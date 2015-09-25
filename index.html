@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Play With The Cloud</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Alice' rel='stylesheet' type='text/css'>
+    <style>
+        * {
+            margin: 0;
+        }
+        html, body {
+            height: 100%;
+        }
+        .wrapper {
+            min-height: 100%;
+            margin: 0 auto -400px; /* the bottom margin is the negative value of the footer's height */
+        }
+        .footer, .push {
+            height: 400px; /* .push must be the same height as .footer */  
+        }
+
+        .footer {
+            background-color: #00BF77;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        /*
+
+        Sticky Footer by Ryan Fait
+        http://ryanfait.com/
+
+        */
+
+        .title-alice{
+            font-family: Alice, serif;
+        }
+        .clouds {
+            font-size: 5em;
+            text-align: center;
+        }
+        a#red {
+            color: #FF4136;
+        }
+        a#orange {
+            color: #FF851B;
+        }
+        a#yellow {
+            color: #FFDC00;
+        }
+        a#green {
+            color: #2ECC40;
+        }
+        a#blue {
+            color: #0074D9;
+        }
+        a#violet {
+            color: #B10DC9;
+        }
+        .kfa {
+            font-size: 2em;
+            color: #ffffff;
+            text-align: center;
+            padding-top: 2em;
+            padding-bottom: 2em;
+        }
+        a.kfa-link{
+            color: #FFDC00;
+        }
+    </style>
+</head>
+
+<body>
+        <div class="wrapper">
+        <div class="container">
+
+            <div class="row clouds">
+                <h1 class="title-alice">Play With The Cloud</h1>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" id="red"><i class="fa fa-cloud"></i></a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" id="orange"><i class="fa fa-cloud"></i></a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" id="yellow"><i class="fa fa-cloud"></i></a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" id="green"><i class="fa fa-cloud"></i></a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" id="blue"><i class="fa fa-cloud"></i></a>
+                </div>
+                <div class="col-xs-4 col-sm-2">
+                    <a href="#" id="violet"><i class="fa fa-cloud"></i></a>
+                </div>
+            </div>
+            
+        </div>
+        <div class="push"></div>
+    </div>
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row kfa">
+                <div>
+                    <p>Did you know you can share your house keys through the cloud too?</p>
+                    <p>Check out the
+                    <a class="kfa-link" href="https://www.keyforall.com">Keyforall</a></p>
+                </div> 
+            </div>
+            <p>&copy;2015 Random Wire Technology, LLC</p>
+        </div>
+        
+    </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script>
+            $('#red').click(function(){
+                console.log("You clicked red");
+                $.post("https://api.particle.io/v1/devices/28002c000c47343233323032/leds?access_token=77933a6e5091994441fa37f60019f8833e757f18", { "args": "#ff0000" }).done(function(data) {
+                        console.log("result: " + data)
+                    });
+            });
+
+            $('#orange').click(function(){
+                console.log("You clicked orange");
+                $.post("https://api.particle.io/v1/devices/28002c000c47343233323032/leds", { access_token: "77933a6e5091994441fa37f60019f8833e757f18", args: "orange" }, function(data) {
+                        console.log("result: " + data)
+                    }, "json");
+            });
+            
+            $('#yellow').click(function(){
+                console.log("You clicked yellow");
+            });
+
+            $('#green').click(function(){
+                console.log("You clicked green");
+            });
+
+            $('#blue').click(function(){
+                console.log("You clicked blue");
+            });
+
+            $('#violet').click(function(){
+                console.log("You clicked violet");
+            });
+        </script>
+    </div>
+</body>
+
+</html>
