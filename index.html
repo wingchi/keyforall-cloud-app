@@ -116,10 +116,19 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+        <script src="//cdn.jsdelivr.net/sparkjs/0.5.9/spark.min.js"></script>
         <script>
+            var device = null;
+            spark.login({accessToken: '77933a6e5091994441fa37f60019f8833e757f18'});
+            spark.getDevice('28002c000c47343233323032', function(err, thisdevice) {
+              console.log('Device name: ' + thisdevice.name);
+              device = thisdevice
+            });
+            
+
             $('#red').click(function(){
                 console.log("You clicked red");
-                $.post("https://api.particle.io/v1/devices/28002c000c47343233323032/leds?access_token=77933a6e5091994441fa37f60019f8833e757f18", { "args": "#ff0000" }).done(function(data) {
+                $.post("https://api.particle.io/v1/devices/28002c000c47343233323032/leds", { access_token: "77933a6e5091994441fa37f60019f8833e757f18", args: "#ff0000" }).done(function(data) {
                         console.log("result: " + data)
                     });
             });
@@ -137,6 +146,13 @@
 
             $('#green').click(function(){
                 console.log("You clicked green");
+                device.callFunction('leds', 'green', function(err, data) {
+                  if (err) {
+                     console.log('An error occurred:', err);
+                  } else {
+                    console.log('Function called succesfully:', data); 
+                  }
+                });
             });
 
             $('#blue').click(function(){
